@@ -1,0 +1,6 @@
+{
+  "name": "Developer Snippet Vault & AI Publisher",
+  "description": "Store, search, and organize code snippets with Gemini AI auto-tagging, summaries, and Markdown technical documentation publisher.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

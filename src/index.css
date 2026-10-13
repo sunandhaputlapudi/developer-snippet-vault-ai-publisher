@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  code, pre, kbd, samp {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.6);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.8);
+}
+
+/* =============================================================================
+   Syntax Highlighting Themes & CSS Tokens
+   ============================================================================= */
+
+/* 1. Dark Theme (VS Code / One Dark) */
+:root,
+[data-syntax-theme="dark"] {
+  --syntax-bg: #030712;
+  --syntax-header-bg: #0f172a;
+  --syntax-border: #1e293b;
+  --syntax-text: #e2e8f0;
+  --syntax-line-number: #475569;
+  --syntax-line-border: #1e293b;
+  --syntax-footer-bg: rgba(15, 23, 42, 0.6);
+  --syntax-toolbar-btn-hover: #1e293b;
+
+  --token-comment: #64748b;
+  --token-punctuation: #94a3b8;
+  --token-number: #f43f5e;
+  --token-string: #34d399;
+  --token-operator: #38bdf8;
+  --token-keyword: #818cf8;
+  --token-function: #fbbf24;
+  --token-variable: #f97316;
+}
+
+/* 2. Light Theme (GitHub / Clean Paper) */
+[data-syntax-theme="light"] {
+  --syntax-bg: #f8fafc;
+  --syntax-header-bg: #f1f5f9;
+  --syntax-border: #cbd5e1;
+  --syntax-text: #0f172a;
+  --syntax-line-number: #94a3b8;
+  --syntax-line-border: #e2e8f0;
+  --syntax-footer-bg: #f1f5f9;
+  --syntax-toolbar-btn-hover: #e2e8f0;
+
+  --token-comment: #64748b;
+  --token-punctuation: #334155;
+  --token-number: #d946ef;
+  --token-string: #059669;
+  --token-operator: #0284c7;
+  --token-keyword: #4f46e5;
+  --token-function: #d97706;
+  --token-variable: #ea580c;
+}
+
+/* 3. High Contrast Theme (Accessible WCAG AAA / Pure Matrix Contrast) */
+[data-syntax-theme="high-contrast"] {
+  --syntax-bg: #000000;
+  --syntax-header-bg: #121212;
+  --syntax-border: #ffffff;
+  --syntax-text: #ffffff;
+  --syntax-line-number: #ffffff;
+  --syntax-line-border: #ffffff;
+  --syntax-footer-bg: #121212;
+  --syntax-toolbar-btn-hover: #262626;
+
+  --token-comment: #00ff66;
+  --token-punctuation: #ffffff;
+  --token-number: #ff007f;
+  --token-string: #00ffff;
+  --token-operator: #ffff00;
+  --token-keyword: #ff00ff;
+  --token-function: #ffff00;
+  --token-variable: #ffa500;
+}
+
+/* 4. Dracula Theme (Neon Twilight) */
+[data-syntax-theme="dracula"] {
+  --syntax-bg: #282a36;
+  --syntax-header-bg: #21222c;
+  --syntax-border: #6272a4;
+  --syntax-text: #f8f8f2;
+  --syntax-line-number: #6272a4;
+  --syntax-line-border: #44475a;
+  --syntax-footer-bg: #1e1f29;
+  --syntax-toolbar-btn-hover: #44475a;
+
+  --token-comment: #6272a4;
+  --token-punctuation: #f8f8f2;
+  --token-number: #bd93f9;
+  --token-string: #f1fa8c;
+  --token-operator: #ff79c6;
+  --token-keyword: #ff79c6;
+  --token-function: #50fa7b;
+  --token-variable: #8be9fd;
+}
+
+/* Dynamic Syntax Token Rules */
+.syntax-container .token.comment,
+.syntax-container .token.prolog,
+.syntax-container .token.doctype,
+.syntax-container .token.cdata {
+  color: var(--token-comment) !important;
+  font-style: italic;
+}
+
+.syntax-container .token.punctuation {
+  color: var(--token-punctuation) !important;
+}
+
+.syntax-container .token.property,
+.syntax-container .token.tag,
+.syntax-container .token.boolean,
+.syntax-container .token.number,
+.syntax-container .token.constant,
+.syntax-container .token.symbol,
+.syntax-container .token.deleted {
+  color: var(--token-number) !important;
+}
+
+.syntax-container .token.selector,
+.syntax-container .token.attr-name,
+.syntax-container .token.string,
+.syntax-container .token.char,
+.syntax-container .token.builtin,
+.syntax-container .token.inserted {
+  color: var(--token-string) !important;
+}
+
+.syntax-container .token.operator,
+.syntax-container .token.entity,
+.syntax-container .token.url,
+.syntax-container .language-css .token.string,
+.syntax-container .style .token.string {
+  color: var(--token-operator) !important;
+}
+
+.syntax-container .token.atrule,
+.syntax-container .token.attr-value,
+.syntax-container .token.keyword {
+  color: var(--token-keyword) !important;
+  font-weight: 600;
+}
+
+.syntax-container .token.function,
+.syntax-container .token.class-name {
+  color: var(--token-function) !important;
+}
+
+.syntax-container .token.regex,
+.syntax-container .token.important,
+.syntax-container .token.variable {
+  color: var(--token-variable) !important;
+}

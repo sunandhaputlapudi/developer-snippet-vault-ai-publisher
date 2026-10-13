@@ -1,0 +1,264 @@
+{
+  "users": [
+    {
+      "id": "usr_dev_master",
+      "email": "tejaswanth899@gmail.com",
+      "name": "Tejaswanth",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+      "created_at": "2026-01-15T00:00:00.000Z"
+    },
+    {
+      "id": "usr_1791821118159",
+      "email": "kanna@gmailcom",
+      "name": "kanna",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=kanna%40gmailcom",
+      "created_at": "2026-10-12T16:05:18.159Z"
+    },
+    {
+      "id": "usr_1791897794958",
+      "email": "sunandhaputlapudi@gmail.com",
+      "name": "sunandhaputlapudi",
+      "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=sunandhaputlapudi%40gmail.com",
+      "created_at": "2026-10-13T13:23:14.958Z"
+    }
+  ],
+  "collections": [
+    {
+      "id": "col_react",
+      "user_id": "usr_dev_master",
+      "name": "React & Hooks",
+      "description": "Custom state managers, hooks, and lifecycle patterns",
+      "color": "#3b82f6",
+      "created_at": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "col_backend",
+      "user_id": "usr_dev_master",
+      "name": "Backend & APIs",
+      "description": "Worker pools, rate limiters, auth middleware, and caching",
+      "color": "#10b981",
+      "created_at": "2026-02-02T00:00:00.000Z"
+    },
+    {
+      "id": "col_database",
+      "user_id": "usr_dev_master",
+      "name": "Databases & SQL",
+      "description": "Recursive queries, indexing, and migration scripts",
+      "color": "#f59e0b",
+      "created_at": "2026-02-03T00:00:00.000Z"
+    },
+    {
+      "id": "col_devops",
+      "user_id": "usr_dev_master",
+      "name": "DevOps & Tooling",
+      "description": "Multi-stage Docker, CI/CD pipes, and shell automations",
+      "color": "#8b5cf6",
+      "created_at": "2026-02-04T00:00:00.000Z"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "snp_1791899328784_a0jfb",
+      "user_id": "usr_1791897794958",
+      "title": "Sum Of Two Numbers",
+      "code_content": "def add_numbers(a, b):\n    return a + b\n\nresult = add_numbers(10, 20)\nprint(result)",
+      "language": "python",
+      "notes": "A simple function that adds two numbers and returns their sum.",
+      "collection_id": null,
+      "collection_name": null,
+      "is_favorite": false,
+      "tags": [
+        "python",
+        "production-ready",
+        "developer-vault",
+        "modular-code"
+      ],
+      "summary": "A production-ready python implementation of Sum Of Two Numbers with modular execution logic.",
+      "analysis_status": "ready",
+      "analysis_error": null,
+      "explanation": "Implements Sum Of Two Numbers using standard python idioms, designed for direct integration and maintainability.",
+      "suggested_improvements": [
+        "Add comprehensive automated unit tests covering edge-case inputs.",
+        "Consider introducing telemetry logging or latency metrics."
+      ],
+      "created_at": "2026-10-13T13:48:48.784Z",
+      "updated_at": "2026-10-13T13:48:48.784Z"
+    },
+    {
+      "id": "snp_1",
+      "user_id": "usr_dev_master",
+      "title": "useDebounceValue Hook with Cleanup",
+      "language": "typescript",
+      "collection_id": "col_react",
+      "collection_name": "React & Hooks",
+      "code_content": "import { useState, useEffect } from 'react';\n\n/**\n * Custom React hook to debounce any fast-changing value.\n * @param value The raw input value\n * @param delay Milliseconds to delay update (default: 300ms)\n */\nexport function useDebounceValue<T>(value: T, delay = 300): T {\n  const [debouncedValue, setDebouncedValue] = useState<T>(value);\n\n  useEffect(() => {\n    const handler = setTimeout(() => {\n      setDebouncedValue(value);\n    }, delay);\n\n    return () => {\n      clearTimeout(handler);\n    };\n  }, [value, delay]);\n\n  return debouncedValue;\n}",
+      "notes": "Use this for instant search inputs and window resize listeners to prevent excessive renders and API calls.",
+      "tags": [
+        "react",
+        "typescript",
+        "custom-hook",
+        "debounce",
+        "performance"
+      ],
+      "summary": "Delays updating a state value until a specified idle duration elapses, cleaning up timers on unmount.",
+      "is_favorite": true,
+      "analysis_status": "ready",
+      "explanation": "Creates a timeout on value change that updates local state only when delay milliseconds pass without another input event.",
+      "suggested_improvements": [
+        "Add leading/trailing execution flags for immediate feedback on the first keystroke.",
+        "Allow optional callback function for execution notifications."
+      ],
+      "created_at": "2026-03-01T10:00:00.000Z",
+      "updated_at": "2026-03-01T10:00:00.000Z"
+    },
+    {
+      "id": "snp_2",
+      "user_id": "usr_dev_master",
+      "title": "Go Concurrency Worker Pool Pattern",
+      "language": "go",
+      "collection_id": "col_backend",
+      "collection_name": "Backend & APIs",
+      "code_content": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"sync\"\n\t\"time\"\n)\n\ntype Job struct {\n\tID    int\n\tData  string\n}\n\ntype Result struct {\n\tJobID  int\n\tOutput string\n\tErr    error\n}\n\nfunc worker(ctx context.Context, id int, jobs <-chan Job, results chan<- Result, wg *sync.WaitGroup) {\n\tdefer wg.Done()\n\tfor {\n\t\tselect {\n\t\tcase <-ctx.Done():\n\t\t\treturn\n\t\tcase job, ok := <-jobs:\n\t\t\tif !ok {\n\t\t\t\treturn\n\t\t\t}\n\t\t\t// Process job\n\t\t\tres := Result{\n\t\t\t\tJobID:  job.ID,\n\t\t\t\tOutput: fmt.Sprintf(\"Worker %d completed %s\", id, job.Data),\n\t\t\t}\n\t\t\tresults <- res\n\t\t}\n\t}\n}",
+      "notes": "Production-ready worker pool in Go with Context cancellation and sync.WaitGroup synchronization.",
+      "tags": [
+        "golang",
+        "concurrency",
+        "worker-pool",
+        "goroutines",
+        "channels"
+      ],
+      "summary": "Implements a fixed-size concurrent worker pool in Go with graceful context cancellation and channel processing.",
+      "is_favorite": true,
+      "analysis_status": "ready",
+      "explanation": "Demonstrates fan-out fan-in concurrency pattern using channels, goroutines, and select statements with context awareness.",
+      "suggested_improvements": [
+        "Add backpressure monitoring to alert when the job queue exceeds 80% capacity.",
+        "Implement exponential backoff retry for failed jobs."
+      ],
+      "created_at": "2026-03-02T14:30:00.000Z",
+      "updated_at": "2026-03-02T14:30:00.000Z"
+    },
+    {
+      "id": "snp_3",
+      "user_id": "usr_dev_master",
+      "title": "PostgreSQL Recursive CTE for Hierarchical Trees",
+      "language": "sql",
+      "collection_id": "col_database",
+      "collection_name": "Databases & SQL",
+      "code_content": "WITH RECURSIVE category_tree AS (\n  -- Anchor member: root categories\n  SELECT \n    id, \n    name, \n    parent_id, \n    1 AS depth, \n    ARRAY[name] AS path_names\n  FROM categories\n  WHERE parent_id IS NULL\n\n  UNION ALL\n\n  -- Recursive member: child categories\n  SELECT \n    c.id, \n    c.name, \n    c.parent_id, \n    ct.depth + 1, \n    ct.path_names || c.name\n  FROM categories c\n  JOIN category_tree ct ON c.parent_id = ct.id\n)\nSELECT \n  id, \n  name, \n  depth, \n  array_to_string(path_names, ' > ') AS full_path\nFROM category_tree\nORDER BY path_names;",
+      "notes": "Efficiently flattens multi-level nested folders, organizational hierarchies, and product taxonomies in a single query.",
+      "tags": [
+        "postgresql",
+        "sql",
+        "cte",
+        "recursion",
+        "hierarchical-data"
+      ],
+      "summary": "Traverses a parent-child relational tree to calculate hierarchy depth and string breadcrumb paths.",
+      "is_favorite": false,
+      "analysis_status": "ready",
+      "explanation": "Uses an anchor SELECT query to find roots followed by UNION ALL joining children recursively until all levels are resolved.",
+      "suggested_improvements": [
+        "Add cycle detection using array containment to prevent infinite loops in damaged graphs.",
+        "Create an index on parent_id and id to optimize JOIN performance."
+      ],
+      "created_at": "2026-03-03T11:20:00.000Z",
+      "updated_at": "2026-03-03T11:20:00.000Z"
+    },
+    {
+      "id": "snp_4",
+      "user_id": "usr_dev_master",
+      "title": "Multi-Stage Production Dockerfile for Node/Next.js",
+      "language": "dockerfile",
+      "collection_id": "col_devops",
+      "collection_name": "DevOps & Tooling",
+      "code_content": "# Build Stage\nFROM node:20-alpine AS builder\nWORKDIR /app\nRUN apk add --no-cache libc6-compat\nCOPY package*.json ./\nRUN npm ci\nCOPY . .\nRUN npm run build\n\n# Runner Stage\nFROM node:20-alpine AS runner\nWORKDIR /app\nENV NODE_ENV=production\nRUN addgroup --system --gid 1001 nodejs\nRUN adduser --system --uid 1001 nextjs\n\nCOPY --from=builder /app/public ./public\nCOPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./\nCOPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static\n\nUSER nextjs\nEXPOSE 3000\nENV PORT=3000\nCMD [\"node\", \"server.js\"]",
+      "notes": "Optimized minimal image footprint (<120MB) with non-root security compliance and standalone bundle execution.",
+      "tags": [
+        "docker",
+        "devops",
+        "nextjs",
+        "node",
+        "containers"
+      ],
+      "summary": "Constructs an ultra-lean and secure multi-stage Docker container for Node.js web applications.",
+      "is_favorite": true,
+      "analysis_status": "ready",
+      "explanation": "Separates the build toolchain from the final runner environment, stripping dev dependencies and executing as unprivileged user.",
+      "suggested_improvements": [
+        "Enable Docker BuildKit cache mounts on npm ci directory.",
+        "Add a HEALTHCHECK instruction checking the localhost /api/health endpoint."
+      ],
+      "created_at": "2026-03-04T09:15:00.000Z",
+      "updated_at": "2026-03-04T09:15:00.000Z"
+    },
+    {
+      "id": "snp_5",
+      "user_id": "usr_dev_master",
+      "title": "FastAPI Redis Sliding Window Rate Limiter",
+      "language": "python",
+      "collection_id": "col_backend",
+      "collection_name": "Backend & APIs",
+      "code_content": "import time\nfrom fastapi import FastAPI, HTTPException, Request, status\nimport redis.asyncio as redis\n\napp = FastAPI()\nredis_client = redis.Redis(host=\"localhost\", port=6379, decode_responses=True)\n\nasync def check_rate_limit(client_id: str, limit: int = 60, window_secs: int = 60) -> bool:\n    now = time.time()\n    key = f\"rate_limit:{client_id}\"\n    pipe = redis_client.pipeline()\n    \n    # Remove entries older than the window\n    pipe.zremrangebyscore(key, 0, now - window_secs)\n    # Add current timestamp\n    pipe.zadd(key, {str(now): now})\n    # Count current requests in window\n    pipe.zcard(key)\n    # Set expire for cleanup\n    pipe.expire(key, window_secs)\n    \n    _, _, count, _ = await pipe.execute()\n    return count <= limit",
+      "notes": "Sliding window algorithm prevents burst traffic spikes at boundary edges unlike fixed-window counters.",
+      "tags": [
+        "python",
+        "fastapi",
+        "redis",
+        "rate-limiting",
+        "api-security"
+      ],
+      "summary": "Enforces precision sliding window request limits using Redis sorted sets (ZSET) with atomic pipeline execution.",
+      "is_favorite": false,
+      "analysis_status": "ready",
+      "explanation": "Maintains timestamps in a Redis sorted set, purging entries outside the active window to calculate accurate request velocity.",
+      "suggested_improvements": [
+        "Add client IP fallback if X-Forwarded-For is missing.",
+        "Return remaining quota and reset timestamp in custom HTTP response headers."
+      ],
+      "created_at": "2026-03-05T16:45:00.000Z",
+      "updated_at": "2026-03-05T16:45:00.000Z"
+    }
+  ],
+  "publications": [
+    {
+      "id": "pub_1791820475391_ezeg",
+      "user_id": "usr_dev_master",
+      "snippet_id": "snp_5",
+      "title": "FastAPI Redis Sliding Window Rate Limiter (README SECTION)",
+      "doc_type": "readme_section",
+      "markdown": "# useDebounceValue Hook\n\n![Version](https://img.shields.io/badge/version-1.0.0-indigo.svg)\n![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue.svg)\n\nA high-performance React hook for throttling fast user inputs, debouncing asynchronous search queries, and avoiding excessive renders.\n\n## Features\n- Fully typed with generic parameter `<T>`\n- Automatic timer cleanup on unmount\n- Zero external runtime dependencies\n\n## Quick Start\n```typescript\nconst debouncedSearch = useDebounceValue(rawQuery, 300);\n```",
+      "audience": "intermediate",
+      "tone": "comprehensive",
+      "views": 1,
+      "created_at": "2026-10-12T15:54:35.391Z",
+      "updated_at": "2026-10-12T15:54:35.391Z"
+    },
+    {
+      "id": "pub_1791820437816_425x",
+      "user_id": "usr_dev_master",
+      "snippet_id": "snp_5",
+      "title": "FastAPI Redis Sliding Window Rate Limiter (README SECTION)",
+      "doc_type": "readme_section",
+      "markdown": "# useDebounceValue Hook\n\n![Version](https://img.shields.io/badge/version-1.0.0-indigo.svg)\n![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue.svg)\n\nA high-performance React hook for throttling fast user inputs, debouncing asynchronous search queries, and avoiding excessive renders.\n\n## Features\n- Fully typed with generic parameter `<T>`\n- Automatic timer cleanup on unmount\n- Zero external runtime dependencies\n\n## Quick Start\n```typescript\nconst debouncedSearch = useDebounceValue(rawQuery, 300);\n```",
+      "audience": "intermediate",
+      "tone": "comprehensive",
+      "views": 1,
+      "created_at": "2026-10-12T15:53:57.816Z",
+      "updated_at": "2026-10-12T15:53:57.816Z"
+    },
+    {
+      "id": "pub_1",
+      "user_id": "usr_dev_master",
+      "snippet_id": "snp_1",
+      "title": "useDebounceValue Hook Developer Guide",
+      "doc_type": "readme_section",
+      "markdown": "# useDebounceValue Hook\n\n![Version](https://img.shields.io/badge/version-1.0.0-indigo.svg)\n![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue.svg)\n\nA high-performance React hook for throttling fast user inputs, debouncing asynchronous search queries, and avoiding excessive renders.\n\n## Features\n- Fully typed with generic parameter `<T>`\n- Automatic timer cleanup on unmount\n- Zero external runtime dependencies\n\n## Quick Start\n```typescript\nconst debouncedSearch = useDebounceValue(rawQuery, 300);\n```\n",
+      "audience": "intermediate",
+      "tone": "comprehensive",
+      "views": 42,
+      "created_at": "2026-03-01T12:00:00.000Z",
+      "updated_at": "2026-03-01T12:00:00.000Z"
+    }
+  ]
+}
