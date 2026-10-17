@@ -65,14 +65,14 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
   return (
     <div
       onClick={() => onSelect(snippet)}
-      className="group relative flex flex-col rounded-2xl border border-slate-800/90 bg-slate-900/60 p-5 hover:bg-slate-900/90 hover:border-slate-700 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-indigo-500/5 hover:-translate-y-0.5"
+      className="group relative flex flex-col rounded-2xl border border-[#E2E8F0] bg-white p-5 hover:border-[#CBD5E1] hover:shadow-md transition-all duration-200 cursor-pointer"
     >
       {/* Top Header Row */}
       <div className="flex items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2 flex-wrap">
           {/* Language Pill */}
           <span
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold shadow-sm"
             style={{
               color: langMeta.color,
               backgroundColor: langMeta.bgLight,
@@ -88,16 +88,16 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
 
           {/* Collection Pill */}
           {snippet.collection_name && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-slate-800 text-slate-300 border border-slate-700/60">
-              <FolderGit2 className="w-3 h-3 text-indigo-400" />
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-medium bg-[#F1F5F9] text-[#64748B] border border-[#E2E8F0]">
+              <FolderGit2 className="w-3 h-3 text-[#1E3A8A]" />
               {snippet.collection_name}
             </span>
           )}
 
           {/* AI Status Badge */}
           {snippet.analysis_status === 'pending' && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium bg-amber-500/10 text-amber-300 border border-amber-500/30 animate-pulse">
-              <RefreshCw className="w-3 h-3 animate-spin" />
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[11px] font-medium bg-blue-50 text-[#1E3A8A] border border-blue-200 animate-pulse">
+              <RefreshCw className="w-3 h-3 animate-spin text-[#1E3A8A]" />
               AI Analyzing...
             </span>
           )}
@@ -107,16 +107,16 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
         <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
           <button
             onClick={handleFavoriteClick}
-            className={`p-1.5 rounded-lg transition-colors ${
+            className={`p-1.5 rounded-xl transition-colors ${
               snippet.is_favorite
-                ? 'text-amber-400 bg-amber-400/10 hover:bg-amber-400/20'
-                : 'text-slate-500 hover:text-amber-300 hover:bg-slate-800'
+                ? 'text-amber-500 bg-amber-50 hover:bg-amber-100'
+                : 'text-[#94A3B8] hover:text-amber-500 hover:bg-[#F1F5F9]'
             }`}
             title={snippet.is_favorite ? 'Remove from favorites' : 'Add to favorites'}
           >
             <Star
               className={`w-4 h-4 ${
-                snippet.is_favorite ? 'fill-amber-400' : ''
+                snippet.is_favorite ? 'fill-amber-500' : ''
               }`}
             />
           </button>
@@ -125,7 +125,8 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
           <div className="relative">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors"
+              className="p-1.5 rounded-xl text-[#94A3B8] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
+              title="More actions"
             >
               <MoreVertical className="w-4 h-4" />
             </button>
@@ -136,15 +137,15 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
                   className="fixed inset-0 z-20"
                   onClick={() => setMenuOpen(false)}
                 />
-                <div className="absolute right-0 mt-1.5 w-44 rounded-xl border border-slate-800 bg-slate-900/95 backdrop-blur-md shadow-2xl py-1 z-30 text-xs text-slate-300">
+                <div className="absolute right-0 mt-1.5 w-44 rounded-xl border border-[#E2E8F0] bg-white shadow-xl py-1 z-30 text-xs text-[#0F172A] animate-in fade-in zoom-in-95 duration-100">
                   <button
                     onClick={() => {
                       setMenuOpen(false);
                       onOpenPublisher(snippet);
                     }}
-                    className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-slate-800 hover:text-white"
+                    className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-[#F1F5F9] text-[#1E3A8A] font-medium"
                   >
-                    <BookOpen className="w-3.5 h-3.5 text-indigo-400" />
+                    <BookOpen className="w-3.5 h-3.5 text-[#1E3A8A]" />
                     Publish as Docs
                   </button>
                   <button
@@ -152,9 +153,9 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
                       setMenuOpen(false);
                       onEdit(snippet);
                     }}
-                    className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-slate-800 hover:text-white"
+                    className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-[#F1F5F9] text-[#0F172A]"
                   >
-                    <Edit3 className="w-3.5 h-3.5 text-slate-400" />
+                    <Edit3 className="w-3.5 h-3.5 text-[#64748B]" />
                     Edit Snippet
                   </button>
                   <button
@@ -162,18 +163,18 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
                       setMenuOpen(false);
                       onSelect(snippet);
                     }}
-                    className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-slate-800 hover:text-white"
+                    className="flex items-center gap-2 w-full px-3 py-2 text-left hover:bg-[#F1F5F9] text-[#0F172A]"
                   >
-                    <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#64748B]" />
                     Full Inspector
                   </button>
-                  <div className="h-px bg-slate-800 my-1" />
+                  <div className="h-px bg-[#E2E8F0] my-1" />
                   <button
                     onClick={() => {
                       setMenuOpen(false);
                       onDelete(snippet);
                     }}
-                    className="flex items-center gap-2 w-full px-3 py-2 text-left text-rose-400 hover:bg-rose-950/40 hover:text-rose-300"
+                    className="flex items-center gap-2 w-full px-3 py-2 text-left text-red-600 hover:bg-red-50"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                     Delete Snippet
@@ -186,14 +187,14 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
       </div>
 
       {/* Snippet Title */}
-      <h3 className="text-base font-semibold text-slate-100 group-hover:text-indigo-300 transition-colors line-clamp-1 mb-2">
+      <h3 className="text-base font-bold text-[#0F172A] group-hover:text-[#1E3A8A] transition-colors line-clamp-1 mb-2 font-sans">
         {snippet.title}
       </h3>
 
       {/* Plain-English AI Summary */}
       {snippet.summary && snippet.summary !== 'Pending AI analysis...' && (
-        <div className="mb-3 flex items-start gap-2 rounded-lg bg-indigo-950/20 border border-indigo-900/40 p-2.5 text-xs text-indigo-200/90 leading-relaxed">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
+        <div className="mb-3 flex items-start gap-2 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] p-2.5 text-xs text-[#334155] leading-relaxed">
+          <Sparkles className="w-3.5 h-3.5 text-[#1E3A8A] shrink-0 mt-0.5" />
           <p className="line-clamp-2">{snippet.summary}</p>
         </div>
       )}
@@ -218,13 +219,13 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
                 e.stopPropagation();
                 onSelectTag?.(tag);
               }}
-              className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800/80 text-slate-400 hover:text-indigo-300 hover:bg-slate-700/80 transition-colors border border-slate-700/40"
+              className="text-[11px] px-2.5 py-0.5 rounded-lg bg-[#F8FAFC] text-[#475569] hover:text-[#0F172A] hover:border-[#CBD5E1] transition-colors border border-[#E2E8F0] font-mono"
             >
               #{tag}
             </button>
           ))}
           {snippet.tags.length > 4 && (
-            <span className="text-[10px] text-slate-500 font-mono">
+            <span className="text-[10px] text-[#64748B] font-mono">
               +{snippet.tags.length - 4} more
             </span>
           )}
@@ -232,8 +233,8 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
       )}
 
       {/* Card Footer Bar */}
-      <div className="mt-auto pt-3 border-t border-slate-800/60 flex items-center justify-between text-xs text-slate-400">
-        <div className="flex items-center gap-1.5 text-slate-500">
+      <div className="mt-auto pt-3 border-t border-[#E2E8F0] flex items-center justify-between text-xs text-[#64748B]">
+        <div className="flex items-center gap-1.5 text-[#64748B]">
           <Clock className="w-3.5 h-3.5" />
           <span>{formattedDate}</span>
         </div>
@@ -241,20 +242,20 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
         <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
           <button
             onClick={handleCopyCode}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-medium transition-all ${
               copied
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                : 'bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white'
+                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                : 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1]'
             }`}
           >
             {copied ? (
               <>
-                <Check className="w-3 h-3 text-emerald-400" />
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Copied</span>
               </>
             ) : (
               <>
-                <Copy className="w-3 h-3" />
+                <Copy className="w-3.5 h-3.5" />
                 <span>Copy</span>
               </>
             )}
@@ -262,10 +263,10 @@ export const SnippetCard: React.FC<SnippetCardProps> = ({
 
           <button
             onClick={() => onOpenPublisher(snippet)}
-            className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 hover:text-indigo-200 border border-indigo-500/30 transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold bg-blue-50 hover:bg-blue-100 text-[#1E3A8A] border border-blue-200 transition-all shadow-sm"
             title="Publish as Documentation"
           >
-            <BookOpen className="w-3 h-3" />
+            <BookOpen className="w-3.5 h-3.5 text-[#1E3A8A]" />
             <span>Publish</span>
           </button>
         </div>

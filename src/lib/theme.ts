@@ -13,12 +13,12 @@ export interface ThemeMeta {
 export const SYNTAX_THEMES: Record<SyntaxTheme, ThemeMeta> = {
   dark: {
     id: 'dark',
-    label: 'Dark (VS Code)',
-    shortLabel: 'Dark',
-    description: 'Deep slate backdrop with vibrant pastel tokens',
-    badgeBg: '#0f172a',
-    badgeText: '#818cf8',
-    badgeBorder: '#1e293b',
+    label: 'Deep Navy (High Contrast)',
+    shortLabel: 'Navy Dark',
+    description: 'Deep navy backdrop (#0F172A) with crisp white text and bright syntax tokens',
+    badgeBg: '#0F172A',
+    badgeText: '#F8FAFC',
+    badgeBorder: '#334155',
   },
   light: {
     id: 'light',

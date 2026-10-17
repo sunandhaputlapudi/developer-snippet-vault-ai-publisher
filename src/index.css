@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy-950: #0A0F1D;
+  --color-navy-900: #0F172A;
+  --color-navy-850: #141E33;
+  --color-navy-800: #1E293B;
+  --color-navy-700: #334155;
+  --color-navy-border: #334155;
+  --color-navy-border-light: #475569;
+  --color-navy-primary: #0F172A;
+  --color-navy-accent: #1E3A8A;
+  --color-navy-hover: #1E293B;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-status-success: #16A34A;
+  --color-status-error: #DC2626;
+}
+
 @layer base {
   :root {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -16,40 +33,40 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.6);
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.8);
+  background: #0F172A;
 }
 
 /* =============================================================================
    Syntax Highlighting Themes & CSS Tokens
    ============================================================================= */
 
-/* 1. Dark Theme (VS Code / One Dark) */
+/* 1. Dark Theme (Deep Navy + White Contrast) */
 :root,
 [data-syntax-theme="dark"] {
-  --syntax-bg: #030712;
-  --syntax-header-bg: #0f172a;
-  --syntax-border: #1e293b;
-  --syntax-text: #e2e8f0;
-  --syntax-line-number: #475569;
-  --syntax-line-border: #1e293b;
-  --syntax-footer-bg: rgba(15, 23, 42, 0.6);
-  --syntax-toolbar-btn-hover: #1e293b;
+  --syntax-bg: #0F172A;
+  --syntax-header-bg: #1E293B;
+  --syntax-border: #334155;
+  --syntax-text: #F8FAFC;
+  --syntax-line-number: #64748B;
+  --syntax-line-border: #334155;
+  --syntax-footer-bg: #1E293B;
+  --syntax-toolbar-btn-hover: #334155;
 
-  --token-comment: #64748b;
-  --token-punctuation: #94a3b8;
-  --token-number: #f43f5e;
-  --token-string: #34d399;
-  --token-operator: #38bdf8;
-  --token-keyword: #818cf8;
-  --token-function: #fbbf24;
-  --token-variable: #f97316;
+  --token-comment: #64748B;
+  --token-punctuation: #94A3B8;
+  --token-number: #F87171;
+  --token-string: #34D399;
+  --token-operator: #38BDF8;
+  --token-keyword: #60A5FA;
+  --token-function: #93C5FD;
+  --token-variable: #FBBF24;
 }
 
 /* 2. Light Theme (GitHub / Clean Paper) */
@@ -172,3 +189,121 @@
 .syntax-container .token.variable {
   color: var(--token-variable) !important;
 }
+
+/* =============================================================================
+   Professional Documentation / Markdown Styles
+   ============================================================================= */
+.prose-vault {
+  color: #1E293B;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+.prose-vault h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0F172A;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 0.6rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.prose-vault h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0F172A;
+  border-bottom: 1px solid #E2E8F0;
+  padding-bottom: 0.4rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-vault h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1E3A8A;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-vault p {
+  color: #334155;
+  margin-bottom: 0.85rem;
+  font-size: 0.875rem;
+}
+
+.prose-vault ul, .prose-vault ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.85rem;
+  color: #334155;
+  font-size: 0.875rem;
+}
+
+.prose-vault li {
+  margin-bottom: 0.35rem;
+}
+
+.prose-vault code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.825em;
+  background-color: #F1F5F9;
+  color: #0F172A;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.375rem;
+  border: 1px solid #E2E8F0;
+}
+
+.prose-vault pre {
+  background-color: #0F172A !important;
+  border: 1px solid #1E293B;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.prose-vault pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #F8FAFC;
+}
+
+.prose-vault blockquote {
+  border-left: 3px solid #0F172A;
+  background-color: #F1F5F9;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 1rem 0;
+  color: #1E293B;
+  font-size: 0.875rem;
+}
+
+.prose-vault table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+}
+
+.prose-vault th {
+  background-color: #F1F5F9;
+  color: #0F172A;
+  font-weight: 600;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #E2E8F0;
+  text-align: left;
+}
+
+.prose-vault td {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+}
+
+.prose-vault tr:nth-child(even) td {
+  background-color: #F8FAFC;
+}
+

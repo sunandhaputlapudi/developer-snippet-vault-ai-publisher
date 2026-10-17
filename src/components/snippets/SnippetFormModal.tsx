@@ -165,19 +165,19 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
   const lineCount = codeContent.split('\n').length;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+      <div className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl border border-[#CBD5E1] bg-white shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 bg-slate-900/90">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <Code2 className="w-4 h-4" />
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#1E293B] bg-[#0F172A] text-white">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-[#1E293B] border border-[#334155] flex items-center justify-center text-white">
+              <Code2 className="w-4 h-4 text-[#60A5FA]" />
             </div>
             <div>
               <h3 className="text-lg font-bold text-white">
                 {initialSnippet ? 'Edit Snippet' : 'Create New Snippet'}
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#94A3B8]">
                 Store in your developer vault with AI tags and plain-English summary
               </p>
             </div>
@@ -185,7 +185,7 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-xl text-[#94A3B8] hover:text-white hover:bg-[#1E293B] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -193,18 +193,18 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
 
         {/* Error notification */}
         {error && (
-          <div className="mx-6 mt-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center gap-2 text-rose-300 text-xs">
-            <AlertCircle className="w-4 h-4 shrink-0" />
+          <div className="mx-6 mt-4 p-3 rounded-xl bg-red-50 border border-red-200 flex items-center gap-2 text-red-700 text-xs">
+            <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
             <span>{error}</span>
           </div>
         )}
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
           {/* Row 1: Title */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-              Snippet Title <span className="text-rose-400">*</span>
+            <label className="block text-xs font-bold text-[#0F172A] mb-1.5 font-mono">
+              Snippet Title <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -212,7 +212,7 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
               placeholder="e.g. Recursive Tree CTE or useDebounce Hook"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#CBD5E1] text-[#0F172A] placeholder-[#94A3B8] text-sm focus:outline-none focus:border-[#0F172A] focus:ring-1 focus:ring-[#0F172A] transition-colors"
             />
           </div>
 
@@ -220,22 +220,22 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-semibold text-slate-300">
+                <label className="text-xs font-bold text-[#0F172A] font-mono">
                   Programming Language
                 </label>
                 <button
                   type="button"
                   onClick={handleAutoDetectLang}
-                  className="text-[11px] text-indigo-400 hover:text-indigo-300 flex items-center gap-1"
+                  className="text-[11px] font-semibold text-[#1E3A8A] hover:text-[#0F172A] flex items-center gap-1 transition-colors"
                 >
-                  <Wand2 className="w-3 h-3" />
+                  <Wand2 className="w-3 h-3 text-[#1E3A8A]" />
                   Auto-detect
                 </button>
               </div>
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-indigo-500 transition-colors capitalize"
+                className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#CBD5E1] text-[#0F172A] text-sm focus:outline-none focus:border-[#0F172A] transition-colors capitalize"
               >
                 {Object.values(SUPPORTED_LANGUAGES).map((l) => (
                   <option key={l.id} value={l.id}>
@@ -246,13 +246,13 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold text-[#0F172A] mb-1.5 font-mono">
                 Collection / Folder
               </label>
               <select
                 value={collectionId}
                 onChange={(e) => setCollectionId(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#CBD5E1] text-[#0F172A] text-sm focus:outline-none focus:border-[#0F172A] transition-colors"
               >
                 <option value="">No Collection (General)</option>
                 {collections.map((c) => (
@@ -267,16 +267,16 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
           {/* Row 3: Code Content Editor */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-semibold text-slate-300">
-                Code Content <span className="text-rose-400">*</span>
+              <label className="text-xs font-bold text-[#0F172A] font-mono">
+                Code Content <span className="text-red-500">*</span>
               </label>
-              <div className="flex items-center gap-3 text-[11px] text-slate-500 font-mono">
+              <div className="flex items-center gap-3 text-[11px] text-[#64748B] font-mono">
                 <span>{lineCount} lines</span>
                 <span>{codeContent.length} chars</span>
               </div>
             </div>
 
-            <div className="relative rounded-xl border border-slate-800 bg-slate-950 overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 transition-all">
+            <div className="relative rounded-xl border border-[#1E293B] bg-[#0F172A] overflow-hidden focus-within:border-[#3B82F6] focus-within:ring-1 focus-within:ring-[#3B82F6] transition-all">
               <textarea
                 required
                 rows={12}
@@ -284,7 +284,7 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
                 onChange={(e) => setCodeContent(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={`// Paste your ${language} code here...\nfunction example() {\n  return "clean code";\n}`}
-                className="w-full p-4 font-mono text-xs md:text-sm text-slate-100 bg-transparent resize-y focus:outline-none leading-relaxed"
+                className="w-full p-4 font-mono text-xs md:text-sm text-[#F8FAFC] bg-transparent resize-y focus:outline-none leading-relaxed"
                 spellCheck={false}
               />
             </div>
@@ -292,7 +292,7 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
 
           {/* Row 4: Developer Notes */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+            <label className="block text-xs font-bold text-[#0F172A] mb-1.5 font-mono">
               Markdown Notes &amp; Context (Optional)
             </label>
             <textarea
@@ -300,23 +300,23 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Why this exists, caveats, environment variables required, benchmarks..."
-              className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 text-xs md:text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#CBD5E1] text-[#0F172A] placeholder-[#94A3B8] text-xs md:text-sm focus:outline-none focus:border-[#0F172A] transition-colors"
             />
           </div>
 
           {/* AI Pre-Analysis Section */}
-          <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4 space-y-3">
+          <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 space-y-3">
             <div className="flex items-center justify-between flex-wrap gap-2">
-              <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-slate-200">
+              <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-[#0F172A] font-medium">
                 <input
                   type="checkbox"
                   checked={autoAnalyze}
                   onChange={(e) => setAutoAnalyze(e.target.checked)}
-                  className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-600 focus:ring-indigo-500"
+                  className="w-4 h-4 rounded border-[#CBD5E1] text-[#0F172A] focus:ring-[#0F172A]"
                 />
                 <span className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                  Auto-run Gemini AI tagging &amp; summary on save
+                  <Sparkles className="w-3.5 h-3.5 text-[#1E3A8A]" />
+                  Auto-run AI tagging &amp; summary on save
                 </span>
               </label>
 
@@ -324,31 +324,31 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
                 type="button"
                 onClick={handlePreviewAI}
                 disabled={isPreviewingAI || !codeContent.trim()}
-                className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-indigo-950/50 hover:bg-indigo-900/50 text-indigo-300 border border-indigo-800/60 transition-colors disabled:opacity-40"
+                className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#1E3A8A] border border-blue-200 transition-colors disabled:opacity-40 font-semibold"
               >
-                <Sparkles className="w-3 h-3" />
+                <Sparkles className="w-3 h-3 text-[#1E3A8A]" />
                 <span>{isPreviewingAI ? 'Analyzing...' : 'Preview AI Output'}</span>
               </button>
             </div>
 
             {/* AI Preview Result display */}
             {previewAnalysis && (
-              <div className="p-3 rounded-lg bg-indigo-950/30 border border-indigo-900/50 space-y-2 text-xs">
+              <div className="p-3.5 rounded-xl bg-white border border-[#E2E8F0] space-y-2 text-xs shadow-sm">
                 <div>
-                  <span className="font-semibold text-indigo-300 block mb-0.5">
+                  <span className="font-bold text-[#1E3A8A] block mb-0.5 font-mono">
                     AI Summary:
                   </span>
-                  <p className="text-slate-300">{previewAnalysis.summary}</p>
+                  <p className="text-[#334155]">{previewAnalysis.summary}</p>
                 </div>
                 <div>
-                  <span className="font-semibold text-indigo-300 block mb-1">
+                  <span className="font-bold text-[#1E3A8A] block mb-1 font-mono">
                     AI Tags:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {previewAnalysis.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded-full bg-slate-800 text-indigo-300 text-[11px]"
+                        className="px-2.5 py-0.5 rounded-lg bg-blue-50 text-[#1E3A8A] border border-blue-200 text-[11px] font-mono"
                       >
                         #{tag}
                       </span>
@@ -361,12 +361,12 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
 
           {/* Row 5: Favorite checkbox */}
           <div className="flex items-center gap-2">
-            <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-slate-300">
+            <label className="flex items-center gap-2 cursor-pointer select-none text-xs text-[#334155] font-medium">
               <input
                 type="checkbox"
                 checked={isFavorite}
                 onChange={(e) => setIsFavorite(e.target.checked)}
-                className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-amber-500 focus:ring-amber-400"
+                className="w-4 h-4 rounded border-[#CBD5E1] text-amber-500 focus:ring-amber-400"
               />
               <span>Star snippet as favorite</span>
             </label>
@@ -374,11 +374,11 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
         </form>
 
         {/* Footer Actions */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-slate-800/80 bg-slate-900/90">
+        <div className="flex items-center justify-between px-6 py-4 border-t border-[#E2E8F0] bg-[#F8FAFC]">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="px-4 py-2 rounded-xl text-xs font-semibold text-[#64748B] hover:text-[#0F172A] hover:bg-white transition-colors"
           >
             Cancel
           </button>
@@ -387,9 +387,9 @@ export const SnippetFormModal: React.FC<SnippetFormModalProps> = ({
             type="button"
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] shadow-md transition-all disabled:opacity-50 hover:scale-[1.02] active:scale-[0.98]"
           >
-            <Save className="w-4 h-4" />
+            <Save className="w-4 h-4 text-white" />
             <span>{isSubmitting ? 'Saving Snippet...' : 'Save Snippet to Vault'}</span>
           </button>
         </div>

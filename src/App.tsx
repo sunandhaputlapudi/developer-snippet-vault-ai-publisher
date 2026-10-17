@@ -10,7 +10,6 @@ import {
   List,
   BookOpen,
   FolderGit2,
-  AlertCircle,
   Filter,
   Check,
   RefreshCw,
@@ -39,7 +38,6 @@ import { SnippetFormModal } from './components/snippets/SnippetFormModal';
 import { CollectionsModal } from './components/collections/CollectionsModal';
 import { AIPublisherView } from './components/publisher/AIPublisherView';
 import { LandingShowcase } from './components/landing/LandingShowcase';
-import { RestApiExplorerView } from './components/api-explorer/RestApiExplorerView';
 import { ReadmeGeneratorView } from './components/readme/ReadmeGeneratorView';
 import { AuthModal } from './components/auth/AuthModal';
 import { LoginPage } from './components/auth/LoginPage';
@@ -47,9 +45,10 @@ import { getLanguageMeta } from './lib/languages';
 
 export default function App() {
   // Navigation & User
-  const [activeTab, setActiveTab] = useState<'vault' | 'publisher' | 'collections' | 'landing' | 'api-explorer' | 'readme-generator'>('vault');
+  const [activeTab, setActiveTab] = useState<'vault' | 'publisher' | 'collections' | 'landing' | 'readme-generator'>('vault');
   const [user, setUser] = useState<User | null>(null);
   const [isAuthChecking, setIsAuthChecking] = useState(true);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // Snippets & Collections data
   const [snippets, setSnippets] = useState<Snippet[]>([]);
@@ -359,9 +358,9 @@ export default function App() {
 
   if (isAuthChecking) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center gap-3 text-slate-400 font-sans">
-        <RefreshCw className="w-8 h-8 text-indigo-400 animate-spin" />
-        <p className="text-xs font-mono text-slate-400">Initializing developer vault session...</p>
+      <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center justify-center gap-3 text-[#64748B] font-sans">
+        <RefreshCw className="w-8 h-8 text-[#0F172A] animate-spin" />
+        <p className="text-xs font-mono text-[#64748B]">Initializing developer vault session...</p>
       </div>
     );
   }
@@ -371,10 +370,10 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans selection:bg-[#0F172A] selection:text-white">
       {/* Toast Banner */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl text-xs text-white animate-in slide-in-from-bottom-5 duration-200">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#0F172A] border border-[#1E293B] shadow-2xl text-xs text-white animate-in slide-in-from-bottom-5 duration-200">
           <Check className="w-4 h-4 text-emerald-400" />
           <span>{toastMessage}</span>
         </div>
@@ -397,6 +396,7 @@ export default function App() {
         setActiveTab={setActiveTab}
         onOpenAuth={() => setIsAuthModalOpen(true)}
         onLogout={handleLogout}
+        onToggleMobileSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
       />
 
       {/* Main Container */}
@@ -419,8 +419,6 @@ export default function App() {
               );
             }}
           />
-        ) : activeTab === 'api-explorer' ? (
-          <RestApiExplorerView />
         ) : activeTab === 'readme-generator' ? (
           <ReadmeGeneratorView
             snippets={snippets}
@@ -448,85 +446,87 @@ export default function App() {
               onOpenNewCollection={() => setIsCollectionsModalOpen(true)}
               availableLanguages={availableLanguages}
               popularTags={popularTags}
+              isMobileOpen={isMobileSidebarOpen}
+              onCloseMobile={() => setIsMobileSidebarOpen(false)}
             />
 
             {/* Right Main Vault View */}
             <div className="flex-1 min-w-0 space-y-6">
               {/* Stats & Overview Header Card */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm">
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60">
-                  <span className="text-[11px] font-semibold text-slate-400 block uppercase tracking-wider">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm">
+                <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+                  <span className="text-[11px] font-semibold text-[#64748B] block uppercase tracking-wider font-mono">
                     Total Snippets
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xl font-extrabold text-white font-mono">
+                    <span className="text-xl font-extrabold text-[#0F172A] font-mono">
                       {snippets.length}
                     </span>
-                    <span className="text-[10px] text-slate-500 font-mono">saved</span>
+                    <span className="text-[10px] text-[#64748B] font-mono">saved</span>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60">
-                  <span className="text-[11px] font-semibold text-slate-400 block uppercase tracking-wider">
+                <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+                  <span className="text-[11px] font-semibold text-[#64748B] block uppercase tracking-wider font-mono">
                     Starred Favorites
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xl font-extrabold text-amber-400 font-mono">
+                    <span className="text-xl font-extrabold text-amber-500 font-mono">
                       {favoriteCount}
                     </span>
-                    <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                    <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60">
-                  <span className="text-[11px] font-semibold text-slate-400 block uppercase tracking-wider">
+                <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+                  <span className="text-[11px] font-semibold text-[#64748B] block uppercase tracking-wider font-mono">
                     Languages
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xl font-extrabold text-indigo-400 font-mono">
+                    <span className="text-xl font-extrabold text-[#1E3A8A] font-mono">
                       {availableLanguages.length}
                     </span>
-                    <span className="text-[10px] text-slate-500 font-mono">dialects</span>
+                    <span className="text-[10px] text-[#64748B] font-mono">dialects</span>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/60">
-                  <span className="text-[11px] font-semibold text-slate-400 block uppercase tracking-wider">
-                    Gemini AI Publisher
+                <div className="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
+                  <span className="text-[11px] font-semibold text-[#64748B] block uppercase tracking-wider font-mono">
+                    AI Publisher
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5" /> Ready
+                    <span className="text-xs font-bold text-emerald-600 flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5 text-[#1E3A8A]" /> Ready
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* Controls & Filter Bar */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-xs">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-white border border-[#E2E8F0] shadow-sm text-xs">
                 {/* Search / Filter summary */}
                 <div className="flex items-center gap-2 flex-wrap">
                   {showFavoritesOnly && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30">
-                      <Star className="w-3 h-3 fill-amber-400" /> Favorites Only
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200">
+                      <Star className="w-3 h-3 fill-amber-500 text-amber-500" /> Favorites Only
                     </span>
                   )}
 
                   {selectedCollectionId && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
-                      <FolderGit2 className="w-3 h-3" />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-[#1E3A8A] border border-blue-200 font-medium">
+                      <FolderGit2 className="w-3 h-3 text-[#1E3A8A]" />
                       {collections.find((c) => c.id === selectedCollectionId)?.name}
                     </span>
                   )}
 
                   {selectedLanguage !== 'all' && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 border border-slate-700 capitalize">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] capitalize">
                       {selectedLanguage}
                     </span>
                   )}
 
                   {selectedTag && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800 text-indigo-300 border border-slate-700 font-mono">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-[#1E3A8A] border border-blue-200 font-mono">
                       #{selectedTag}
                     </span>
                   )}
@@ -540,7 +540,7 @@ export default function App() {
                         setSelectedTag(null);
                         setSearchQuery('');
                       }}
-                      className="text-slate-400 hover:text-white underline text-[11px] ml-1"
+                      className="text-[#64748B] hover:text-[#0F172A] underline text-[11px] ml-1 transition-colors"
                     >
                       Reset all filters
                     </button>
@@ -549,13 +549,13 @@ export default function App() {
 
                 {/* Right controls: Sort dropdown & Grid/List toggle */}
                 <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
-                  <div className="flex items-center gap-1.5 text-slate-400">
+                  <div className="flex items-center gap-1.5 text-[#64748B]">
                     <SlidersHorizontal className="w-3.5 h-3.5" />
                     <span>Sort:</span>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as any)}
-                      className="bg-slate-950 border border-slate-800 text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-indigo-500"
+                      className="bg-white border border-[#CBD5E1] text-[#0F172A] rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-[#0F172A] transition-colors"
                     >
                       <option value="newest">Newest First</option>
                       <option value="oldest">Oldest First</option>
@@ -564,13 +564,13 @@ export default function App() {
                     </select>
                   </div>
 
-                  <div className="flex items-center border border-slate-800 rounded-lg overflow-hidden bg-slate-950">
+                  <div className="flex items-center border border-[#CBD5E1] rounded-lg overflow-hidden bg-white">
                     <button
                       onClick={() => setViewMode('grid')}
                       className={`p-1.5 transition-colors ${
                         viewMode === 'grid'
-                          ? 'bg-slate-800 text-indigo-300'
-                          : 'text-slate-400 hover:text-white'
+                          ? 'bg-[#0F172A] text-white'
+                          : 'text-[#64748B] hover:text-[#0F172A]'
                       }`}
                       title="Grid layout"
                     >
@@ -580,8 +580,8 @@ export default function App() {
                       onClick={() => setViewMode('compact')}
                       className={`p-1.5 transition-colors ${
                         viewMode === 'compact'
-                          ? 'bg-slate-800 text-indigo-300'
-                          : 'text-slate-400 hover:text-white'
+                          ? 'bg-[#0F172A] text-white'
+                          : 'text-[#64748B] hover:text-[#0F172A]'
                       }`}
                       title="Compact layout"
                     >
@@ -591,7 +591,7 @@ export default function App() {
 
                   <button
                     onClick={handleExportVault}
-                    className="p-1.5 rounded-lg border border-slate-800 bg-slate-950 text-slate-400 hover:text-indigo-300 hover:bg-slate-800 transition-colors"
+                    className="p-1.5 rounded-lg border border-[#CBD5E1] bg-white text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] transition-colors"
                     title="Export Vault to JSON"
                   >
                     <Download className="w-3.5 h-3.5" />
@@ -601,18 +601,18 @@ export default function App() {
 
               {/* Snippets Grid */}
               {loading ? (
-                <div className="py-24 flex flex-col items-center justify-center gap-3 text-slate-400">
-                  <RefreshCw className="w-8 h-8 text-indigo-400 animate-spin" />
+                <div className="py-24 flex flex-col items-center justify-center gap-3 text-[#64748B]">
+                  <RefreshCw className="w-8 h-8 text-[#0F172A] animate-spin" />
                   <p className="text-sm font-medium">Loading your developer snippets...</p>
                 </div>
               ) : filteredSnippets.length === 0 ? (
-                <div className="py-20 flex flex-col items-center justify-center gap-4 text-center border border-dashed border-slate-800 rounded-2xl bg-slate-900/20 p-6">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center">
+                <div className="py-20 flex flex-col items-center justify-center gap-4 text-center border border-dashed border-[#CBD5E1] rounded-2xl bg-white p-6 shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-[#1E3A8A] flex items-center justify-center">
                     <Code2 className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-white">No snippets found</h3>
-                    <p className="text-xs text-slate-400 max-w-sm mt-1">
+                    <h3 className="text-base font-bold text-[#0F172A]">No snippets found</h3>
+                    <p className="text-xs text-[#64748B] max-w-sm mt-1">
                       {searchQuery
                         ? `No code snippets match "${searchQuery}". Try adjusting your keywords or clearing filters.`
                         : 'Your vault is ready for code. Save your first function or algorithm to get started.'}
@@ -623,9 +623,9 @@ export default function App() {
                       setEditingSnippet(null);
                       setIsFormModalOpen(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 transition-all"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] shadow-md transition-all hover:scale-[1.02]"
                   >
-                    <Plus className="w-4 h-4" />
+                    <Plus className="w-4 h-4 text-white" />
                     <span>Create New Snippet</span>
                   </button>
                 </div>

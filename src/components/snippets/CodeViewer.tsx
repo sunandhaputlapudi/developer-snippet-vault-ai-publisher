@@ -187,10 +187,10 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
             <button
               onClick={() => setShowThemeMenu(!showThemeMenu)}
               title="Toggle syntax highlighting theme"
-              className="flex items-center gap-1 px-2 py-1 text-xs rounded hover:bg-slate-800/60 transition-colors"
+              className="flex items-center gap-1 px-2 py-1 text-xs rounded hover:bg-[#151E33] transition-colors"
               style={{ color: 'var(--syntax-text)' }}
             >
-              <Palette className="w-3.5 h-3.5 text-indigo-400" />
+              <Palette className="w-3.5 h-3.5 text-[#8B5CF6]" />
               <span className="hidden sm:inline text-[11px] font-sans font-medium">
                 {SYNTAX_THEMES[currentTheme].shortLabel}
               </span>
@@ -205,7 +205,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
                   borderColor: 'var(--syntax-border)',
                 }}
               >
-                <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 font-sans border-b border-slate-800/60 mb-1">
+                <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#94A3B8] font-sans border-b border-[#293449] mb-1">
                   Syntax Themes
                 </div>
                 {(Object.keys(SYNTAX_THEMES) as SyntaxTheme[]).map((themeKey) => {
@@ -217,8 +217,8 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
                       onClick={() => handleSelectTheme(themeKey)}
                       className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-sans flex items-center justify-between gap-2 transition-colors ${
                         isSelected
-                          ? 'bg-indigo-600 text-white font-semibold'
-                          : 'hover:bg-slate-800 text-slate-300 hover:text-white'
+                          ? 'bg-[#1E3A8A] text-white font-semibold shadow-sm'
+                          : 'hover:bg-[#1E293B] text-[#CBD5E1] hover:text-white'
                       }`}
                     >
                       <div className="flex flex-col">
@@ -238,8 +238,8 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
           <button
             onClick={() => setWrapLines(!wrapLines)}
             title="Toggle word wrap"
-            className={`p-1.5 rounded hover:bg-slate-800/60 transition-colors ${
-              wrapLines ? 'text-indigo-400 bg-indigo-950/50' : 'hover:text-slate-200'
+            className={`p-1.5 rounded hover:bg-[#334155] transition-colors ${
+              wrapLines ? 'text-white bg-[#1E3A8A]' : 'hover:text-white'
             }`}
           >
             <WrapText className="w-3.5 h-3.5" />
@@ -250,7 +250,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
               setFontSize((prev) => (prev === 'xs' ? 'sm' : prev === 'sm' ? 'base' : 'xs'))
             }
             title="Cycle font size"
-            className="px-2 py-1 text-xs rounded hover:bg-slate-800/60 hover:text-slate-200 transition-colors"
+            className="px-2 py-1 text-xs rounded hover:bg-[#334155] hover:text-white transition-colors text-[#94A3B8]"
           >
             {fontSize.toUpperCase()}
           </button>
@@ -258,7 +258,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
           <button
             onClick={() => setIsFullscreen(!isFullscreen)}
             title={isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
-            className="p-1.5 rounded hover:bg-slate-800/60 hover:text-slate-200 transition-colors"
+            className="p-1.5 rounded hover:bg-[#334155] hover:text-white transition-colors text-[#94A3B8]"
           >
             {isFullscreen ? (
               <Minimize2 className="w-3.5 h-3.5" />
@@ -271,8 +271,8 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
             onClick={handleCopy}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium transition-all duration-200 ${
               copied
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                : 'bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white'
+                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                : 'bg-[#1E293B] hover:bg-[#334155] text-white border border-[#334155]'
             }`}
             title="Copy code to clipboard"
           >
@@ -283,7 +283,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5" />
+                <Copy className="w-3.5 h-3.5 text-white" />
                 <span>Copy</span>
               </>
             )}

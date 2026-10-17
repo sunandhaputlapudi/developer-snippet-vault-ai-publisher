@@ -50,7 +50,7 @@ export const ReadmeGeneratorView: React.FC<ReadmeGeneratorViewProps> = ({
   const [projectDescription, setProjectDescription] = useState(
     primarySnippet?.summary || 'A high-performance production module built for modern cloud engineering.'
   );
-  const [authorName, setAuthorName] = useState('Tejaswanth');
+  const [authorName, setAuthorName] = useState('Developer');
   const [licenseType, setLicenseType] = useState<'MIT' | 'Apache-2.0' | 'BSD-3-Clause'>('MIT');
   const [packageManager, setPackageManager] = useState<'npm' | 'pip' | 'cargo' | 'go'>('npm');
 
@@ -194,22 +194,22 @@ ${combinedCode.slice(0, 4000)}
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-blue-950/60 via-slate-900 to-indigo-950/40 border border-blue-900/40 shadow-xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm">
         <div className="flex items-start gap-3">
-          <div className="p-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 mt-1">
+          <div className="p-3 rounded-xl bg-[#0F172A]/5 border border-[#0F172A]/15 text-[#0F172A] mt-1 shrink-0">
             <FileText className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-xl font-bold text-white tracking-tight">
-                GitHub README.md Generator Studio
+              <h2 className="text-xl font-bold text-[#0F172A] tracking-tight font-sans">
+                GitHub README.md Studio
               </h2>
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#0F172A]/10 text-[#0F172A] border border-[#0F172A]/20">
                 PRO v2.4
               </span>
             </div>
-            <p className="text-xs md:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
-              Synthesize production-grade, publication-ready GitHub <code>README.md</code> documentation files
+            <p className="text-xs md:text-sm text-[#64748B] mt-1 max-w-2xl leading-relaxed">
+              Synthesize production-grade, publication-ready GitHub <code className="text-[#0F172A] bg-[#F1F5F9] px-1.5 py-0.5 rounded border border-[#E2E8F0] font-mono">README.md</code> documentation files
               from snippet metadata, code signatures, shields.io badges, and installation recipes.
             </p>
           </div>
@@ -218,16 +218,16 @@ ${combinedCode.slice(0, 4000)}
         <button
           onClick={handleGenerateReadme}
           disabled={isGenerating || selectedSnippetIds.length === 0}
-          className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 transition-all disabled:opacity-50 shrink-0"
+          className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] shadow-md shadow-[#0F172A]/15 transition-all disabled:opacity-50 shrink-0 hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
         >
           {isGenerating ? (
             <>
-              <RefreshCw className="w-4 h-4 animate-spin" />
+              <RefreshCw className="w-4 h-4 animate-spin text-white" />
               <span>Drafting README.md...</span>
             </>
           ) : (
             <>
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4 text-blue-300" />
               <span>Generate README.md</span>
             </>
           )}
@@ -235,9 +235,9 @@ ${combinedCode.slice(0, 4000)}
       </div>
 
       {error && (
-        <div className="p-3.5 rounded-xl bg-rose-950/40 border border-rose-900/60 text-xs text-rose-300 flex items-center justify-between">
+        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600 flex items-center justify-between">
           <span>{error}</span>
-          <button onClick={() => setError(null)} className="text-rose-400 hover:text-white">
+          <button onClick={() => setError(null)} className="text-red-700 font-semibold hover:underline">
             Dismiss
           </button>
         </div>
@@ -248,44 +248,44 @@ ${combinedCode.slice(0, 4000)}
         {/* Left Pane: Config & Snippet Selector (5 columns) */}
         <div className="lg:col-span-5 space-y-4">
           {/* Project Details Box */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 space-y-3.5 text-xs">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-              <span className="font-bold text-slate-200 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-                <Settings className="w-3.5 h-3.5 text-blue-400" />
+          <div className="rounded-2xl border border-[#E2E8F0] bg-white p-5 space-y-3.5 text-xs shadow-sm">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2">
+              <span className="font-bold text-[#0F172A] uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-mono">
+                <Settings className="w-3.5 h-3.5 text-[#0F172A]" />
                 Project Metadata
               </span>
-              <span className="text-[10px] text-slate-500 font-mono">Step 1</span>
+              <span className="text-[10px] text-[#64748B] font-mono">Step 1</span>
             </div>
 
             <div>
-              <label className="block text-slate-400 font-medium mb-1">Project Name / Title</label>
+              <label className="block text-[#475569] font-medium mb-1">Project Name / Title</label>
               <input
                 type="text"
                 value={projectName}
                 onChange={(e) => setProjectName(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-xs font-sans focus:outline-none focus:border-blue-500"
+                className="w-full px-3 py-2 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] text-xs font-sans focus:outline-none focus:border-[#0F172A] focus:bg-white"
                 placeholder="e.g. FastAPI Sliding Window Rate Limiter"
               />
             </div>
 
             <div>
-              <label className="block text-slate-400 font-medium mb-1">Tagline / Short Pitch</label>
+              <label className="block text-[#475569] font-medium mb-1">Tagline / Short Pitch</label>
               <textarea
                 rows={2}
                 value={projectDescription}
                 onChange={(e) => setProjectDescription(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-xs font-sans resize-none focus:outline-none focus:border-blue-500"
+                className="w-full px-3 py-2 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] text-xs font-sans resize-none focus:outline-none focus:border-[#0F172A] focus:bg-white"
                 placeholder="Concise plain-English summary of what this code accomplishes."
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-slate-400 font-medium mb-1">Package Manager</label>
+                <label className="block text-[#475569] font-medium mb-1">Package Manager</label>
                 <select
                   value={packageManager}
                   onChange={(e) => setPackageManager(e.target.value as any)}
-                  className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-xs font-sans focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-1.5 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] text-xs font-sans focus:outline-none focus:border-[#0F172A] focus:bg-white"
                 >
                   <option value="npm">npm / pnpm / yarn</option>
                   <option value="pip">pip / poetry</option>
@@ -295,11 +295,11 @@ ${combinedCode.slice(0, 4000)}
               </div>
 
               <div>
-                <label className="block text-slate-400 font-medium mb-1">License</label>
+                <label className="block text-[#475569] font-medium mb-1">License</label>
                 <select
                   value={licenseType}
                   onChange={(e) => setLicenseType(e.target.value as any)}
-                  className="w-full px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 text-xs font-sans focus:outline-none focus:border-blue-500"
+                  className="w-full px-3 py-1.5 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-[#0F172A] text-xs font-sans focus:outline-none focus:border-[#0F172A] focus:bg-white"
                 >
                   <option value="MIT">MIT License</option>
                   <option value="Apache-2.0">Apache 2.0</option>
@@ -310,67 +310,67 @@ ${combinedCode.slice(0, 4000)}
           </div>
 
           {/* Section Checklist */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 space-y-3 text-xs">
-            <span className="font-bold text-slate-200 uppercase tracking-wider text-[11px] block border-b border-slate-800 pb-2">
+          <div className="rounded-2xl border border-[#E2E8F0] bg-white p-5 space-y-3 text-xs shadow-sm">
+            <span className="font-bold text-[#0F172A] uppercase tracking-wider text-[11px] block border-b border-[#E2E8F0] pb-2 font-mono">
               Sections to Include
             </span>
-            <div className="grid grid-cols-2 gap-2 text-slate-300">
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white">
+            <div className="grid grid-cols-2 gap-2.5 text-[#334155]">
+              <label className="flex items-center gap-2 cursor-pointer hover:text-[#0F172A]">
                 <input
                   type="checkbox"
                   checked={includeBadges}
                   onChange={(e) => setIncludeBadges(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-0"
+                  className="rounded bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:ring-0"
                 />
                 <span>Shields.io Badges</span>
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white">
+              <label className="flex items-center gap-2 cursor-pointer hover:text-[#0F172A]">
                 <input
                   type="checkbox"
                   checked={includeToc}
                   onChange={(e) => setIncludeToc(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-0"
+                  className="rounded bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:ring-0"
                 />
                 <span>Table of Contents</span>
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white">
+              <label className="flex items-center gap-2 cursor-pointer hover:text-[#0F172A]">
                 <input
                   type="checkbox"
                   checked={includeTree}
                   onChange={(e) => setIncludeTree(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-0"
+                  className="rounded bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:ring-0"
                 />
                 <span>Project File Tree</span>
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white">
+              <label className="flex items-center gap-2 cursor-pointer hover:text-[#0F172A]">
                 <input
                   type="checkbox"
                   checked={includeInstall}
                   onChange={(e) => setIncludeInstall(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-0"
+                  className="rounded bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:ring-0"
                 />
                 <span>Install Instructions</span>
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white">
+              <label className="flex items-center gap-2 cursor-pointer hover:text-[#0F172A]">
                 <input
                   type="checkbox"
                   checked={includeApiTable}
                   onChange={(e) => setIncludeApiTable(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-0"
+                  className="rounded bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:ring-0"
                 />
                 <span>API &amp; Options Table</span>
               </label>
 
-              <label className="flex items-center gap-2 cursor-pointer hover:text-white">
+              <label className="flex items-center gap-2 cursor-pointer hover:text-[#0F172A]">
                 <input
                   type="checkbox"
                   checked={includeContributing}
                   onChange={(e) => setIncludeContributing(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-800 text-blue-600 focus:ring-0"
+                  className="rounded bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:ring-0"
                 />
                 <span>Contributing Guide</span>
               </label>
@@ -378,13 +378,13 @@ ${combinedCode.slice(0, 4000)}
           </div>
 
           {/* Snippet Picker for README Content */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 space-y-3 text-xs">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-              <span className="font-bold text-slate-200 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-                <Code2 className="w-3.5 h-3.5 text-blue-400" />
+          <div className="rounded-2xl border border-[#E2E8F0] bg-white p-5 space-y-3 text-xs shadow-sm">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-2">
+              <span className="font-bold text-[#0F172A] uppercase tracking-wider text-[11px] flex items-center gap-1.5 font-mono">
+                <Code2 className="w-3.5 h-3.5 text-[#0F172A]" />
                 Select Vault Snippet(s) ({selectedSnippetIds.length})
               </span>
-              <span className="text-[10px] text-slate-500 font-mono">Step 2</span>
+              <span className="text-[10px] text-[#64748B] font-mono">Step 2</span>
             </div>
 
             <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
@@ -396,23 +396,23 @@ ${combinedCode.slice(0, 4000)}
                     onClick={() => handleToggleSnippet(s.id)}
                     className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${
                       isChecked
-                        ? 'bg-blue-950/40 border-blue-500/60 text-white'
-                        : 'bg-slate-950/60 border-slate-800/80 text-slate-400 hover:border-slate-700'
+                        ? 'bg-[#0F172A]/5 border-[#0F172A] text-[#0F172A]'
+                        : 'bg-[#F8FAFC] border-[#E2E8F0] text-[#475569] hover:border-[#0F172A]/40'
                     }`}
                   >
                     <div className="flex items-center gap-2 truncate pr-2">
                       <div
                         className={`w-3.5 h-3.5 rounded flex items-center justify-center border text-[9px] ${
                           isChecked
-                            ? 'bg-blue-600 border-blue-500 text-white font-bold'
-                            : 'border-slate-700 bg-slate-900'
+                            ? 'bg-[#0F172A] border-[#0F172A] text-white font-bold'
+                            : 'border-[#CBD5E1] bg-white'
                         }`}
                       >
                         {isChecked && '✓'}
                       </div>
                       <span className="truncate font-medium text-xs">{s.title}</span>
                     </div>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 font-mono shrink-0">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-white font-mono shrink-0 border border-[#CBD5E1] text-[#64748B]">
                       {s.language}
                     </span>
                   </div>
@@ -423,50 +423,51 @@ ${combinedCode.slice(0, 4000)}
         </div>
 
         {/* Right Pane: Live Studio & Markdown Renderer (7 columns) */}
-        <div className="lg:col-span-7 flex flex-col rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden shadow-2xl min-h-[640px]">
+        <div className="lg:col-span-7 flex flex-col rounded-2xl border border-[#E2E8F0] bg-white overflow-hidden shadow-sm min-h-[640px]">
           {/* Action Toolbar */}
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800">
+          <div className="flex items-center justify-between px-4 py-3 bg-[#F8FAFC] border-b border-[#E2E8F0]">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setViewMode('preview')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
                   viewMode === 'preview'
-                    ? 'bg-blue-600/20 text-blue-300 border border-blue-500/40'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-[#0F172A] border border-[#CBD5E1] font-semibold shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
-                <Eye className="w-3.5 h-3.5" />
+                <Eye className="w-3.5 h-3.5 text-[#0F172A]" />
                 <span>GitHub Preview</span>
               </button>
 
               <button
                 onClick={() => setViewMode('raw')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
                   viewMode === 'raw'
-                    ? 'bg-blue-600/20 text-blue-300 border border-blue-500/40'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-white text-[#0F172A] border border-[#CBD5E1] font-semibold shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
                 <Edit className="w-3.5 h-3.5" />
-                <span>Raw README.md</span>
+                <span>Raw Markdown</span>
               </button>
             </div>
 
-            <div className="flex items-center gap-2">
+            {/* Action Buttons */}
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={handleCopy}
                 disabled={!markdownOutput}
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors disabled:opacity-40 ${
+                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium transition-all disabled:opacity-40 cursor-pointer ${
                   copied
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
+                    : 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1]'
                 }`}
-                title="Copy raw Markdown"
+                title="Copy markdown"
               >
                 {copied ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Copied!</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Copied</span>
                   </>
                 ) : (
                   <>
@@ -479,72 +480,108 @@ ${combinedCode.slice(0, 4000)}
               <button
                 onClick={handleDownload}
                 disabled={!markdownOutput}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white disabled:opacity-40 transition-colors"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-white hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] disabled:opacity-40 transition-colors cursor-pointer"
                 title="Download README.md"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>Export README.md</span>
+                <span>Download</span>
               </button>
 
               <button
                 onClick={handleSavePublication}
                 disabled={!markdownOutput || published}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 disabled:opacity-40 transition-colors"
-                title="Save into Published Docs"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0F172A] hover:bg-[#1E293B] text-white border border-[#0F172A] disabled:opacity-40 transition-all shadow-sm cursor-pointer"
               >
                 {published ? (
                   <>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Saved!</span>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
+                    <span>Published!</span>
                   </>
                 ) : (
                   <>
-                    <Save className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Publish Doc</span>
+                    <Save className="w-3.5 h-3.5" />
+                    <span>Save to Docs</span>
                   </>
                 )}
               </button>
             </div>
           </div>
 
-          {/* Studio Content */}
-          <div className="flex-1 p-6 overflow-y-auto">
+          {/* Main Markdown Body */}
+          <div className="flex-1 p-6 overflow-y-auto bg-white">
             {isGenerating ? (
-              <div className="h-96 flex flex-col items-center justify-center gap-3 text-slate-400 text-center">
-                <RefreshCw className="w-8 h-8 text-blue-400 animate-spin" />
-                <p className="text-sm font-medium text-slate-200">
-                  Synthesizing complete README.md with AI Engine...
+              <div className="h-96 flex flex-col items-center justify-center gap-3 text-[#64748B] text-center">
+                <RefreshCw className="w-8 h-8 text-[#0F172A] animate-spin" />
+                <p className="text-sm font-semibold text-[#0F172A]">
+                  Architecting full GitHub README.md...
                 </p>
-                <p className="text-xs text-slate-500 max-w-sm">
-                  Formatting badges, ASCII project directory structure, installation recipes, and API reference tables.
+                <p className="text-xs text-[#64748B] max-w-sm">
+                  Drafting Badges, Architecture Overview, API Reference, Installation Recipes, and Code Examples.
                 </p>
               </div>
             ) : !markdownOutput ? (
-              <div className="h-96 flex flex-col items-center justify-center gap-4 text-slate-500 text-center">
-                <div className="p-4 rounded-2xl bg-blue-600/10 text-blue-400">
-                  <FileText className="w-10 h-10" />
+              <div className="h-96 flex flex-col items-center justify-center gap-3 text-[#64748B] text-center">
+                <div className="w-14 h-14 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-[#0F172A]">
+                  <FileText className="w-7 h-7" />
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-200">
-                    Draft a Professional README.md in 1 Click
-                  </p>
-                  <p className="text-xs text-slate-400 mt-1 max-w-sm">
-                    Select your project snippet(s), customize title &amp; badges on the left, and click{' '}
-                    <span className="text-blue-400 font-semibold">"Generate README.md"</span>.
-                  </p>
-                </div>
+                <p className="text-sm font-bold text-[#0F172A]">
+                  Ready to draft your GitHub project README.md
+                </p>
+                <p className="text-xs text-[#64748B] max-w-sm">
+                  Select snippets and modules on the left, customize your settings, and click{' '}
+                  <span className="text-[#0F172A] font-semibold">"Generate README.md"</span>.
+                </p>
               </div>
             ) : viewMode === 'raw' ? (
               <textarea
                 value={markdownOutput}
                 onChange={(e) => setMarkdownOutput(e.target.value)}
-                className="w-full h-[540px] font-mono text-xs text-slate-200 bg-slate-950 p-4 rounded-xl border border-slate-800 resize-none focus:outline-none focus:border-blue-500 leading-relaxed"
+                className="w-full h-[540px] font-mono text-xs text-[#F8FAFC] bg-[#0F172A] p-4 rounded-xl border border-[#334155] resize-none focus:outline-none focus:border-[#475569] leading-relaxed shadow-inner"
                 spellCheck={false}
               />
             ) : (
-              <div className="space-y-4 text-slate-200 text-sm leading-relaxed font-sans">
-                {/* Clean GitHub Markdown preview rendering */}
-                <RenderedReadme markdown={markdownOutput} />
+              <div className="prose-vault max-w-none">
+                <div className="space-y-4 text-xs md:text-sm text-[#334155] leading-relaxed font-sans">
+                  {markdownOutput.split('\n').map((line, idx) => {
+                    if (line.startsWith('# ')) {
+                      return (
+                        <h1 key={idx} className="text-2xl font-extrabold text-[#0F172A] border-b border-[#E2E8F0] pb-2 mt-6 mb-3">
+                          {line.replace('# ', '')}
+                        </h1>
+                      );
+                    }
+                    if (line.startsWith('## ')) {
+                      return (
+                        <h2 key={idx} className="text-lg font-bold text-[#1E3A8A] border-b border-[#E2E8F0] pb-1.5 mt-5 mb-2">
+                          {line.replace('## ', '')}
+                        </h2>
+                      );
+                    }
+                    if (line.startsWith('### ')) {
+                      return (
+                        <h3 key={idx} className="text-base font-semibold text-[#0F172A] mt-3 mb-1">
+                          {line.replace('### ', '')}
+                        </h3>
+                      );
+                    }
+                    if (line.startsWith('- ') || line.startsWith('* ')) {
+                      return (
+                        <li key={idx} className="ml-4 list-disc my-1">
+                          {line.replace(/^[-*]\s+/, '')}
+                        </li>
+                      );
+                    }
+                    if (line.startsWith('> ')) {
+                      return (
+                        <blockquote key={idx} className="border-l-4 border-[#0F172A] bg-[#F8FAFC] px-4 py-2 my-2 rounded-r-lg italic text-[#1E293B]">
+                          {line.replace(/^>\s+/, '')}
+                        </blockquote>
+                      );
+                    }
+                    if (line.trim() === '') return <div key={idx} className="h-2" />;
+                    return <p key={idx} className="my-1.5">{line}</p>;
+                  })}
+                </div>
               </div>
             )}
           </div>
@@ -553,99 +590,3 @@ ${combinedCode.slice(0, 4000)}
     </div>
   );
 };
-
-// High-fidelity GitHub-style README Preview Renderer
-function RenderedReadme({ markdown }: { markdown: string }) {
-  const lines = markdown.split('\n');
-
-  return (
-    <div className="space-y-3.5 font-sans text-slate-200 text-sm leading-relaxed">
-      {lines.map((line, idx) => {
-        const trimmed = line.trim();
-
-        // Level 1 Heading
-        if (line.startsWith('# ')) {
-          return (
-            <h1
-              key={idx}
-              className="text-2xl font-extrabold text-white pb-2 border-b border-slate-800 mt-2 mb-3"
-            >
-              {line.replace('# ', '')}
-            </h1>
-          );
-        }
-
-        // Level 2 Heading
-        if (line.startsWith('## ')) {
-          return (
-            <h2
-              key={idx}
-              className="text-lg font-bold text-slate-100 pb-1.5 border-b border-slate-800/80 mt-5 mb-2"
-            >
-              {line.replace('## ', '')}
-            </h2>
-          );
-        }
-
-        // Level 3 Heading
-        if (line.startsWith('### ')) {
-          return (
-            <h3 key={idx} className="text-sm font-bold text-slate-200 mt-3 mb-1">
-              {line.replace('### ', '')}
-            </h3>
-          );
-        }
-
-        // Horizontal rule
-        if (trimmed === '---') {
-          return <hr key={idx} className="border-slate-800 my-4" />;
-        }
-
-        // Blockquotes
-        if (line.startsWith('> ')) {
-          return (
-            <blockquote
-              key={idx}
-              className="border-l-4 border-blue-500 pl-3 py-1 my-2 bg-blue-950/20 text-slate-300 text-xs italic rounded-r-lg"
-            >
-              {line.replace('> ', '')}
-            </blockquote>
-          );
-        }
-
-        // Bullet point
-        if (line.startsWith('- ') || line.startsWith('* ')) {
-          return (
-            <li key={idx} className="ml-5 list-disc text-slate-300 text-xs my-0.5">
-              {line.replace(/^[-*]\s+/, '')}
-            </li>
-          );
-        }
-
-        // Simple code block detection or table
-        if (line.startsWith('```')) {
-          return null; // Grouped inside rendered pre
-        }
-
-        if (trimmed.startsWith('|')) {
-          return (
-            <div key={idx} className="font-mono text-[11px] text-slate-300 bg-slate-950/60 px-3 py-1 border-x border-slate-800">
-              {line}
-            </div>
-          );
-        }
-
-        // Paragraph
-        if (!trimmed) {
-          return <div key={idx} className="h-1.5" />;
-        }
-
-        return (
-          <p key={idx} className="text-xs text-slate-300 leading-relaxed">
-            {line}
-          </p>
-        );
-      })}
-    </div>
-  );
-}

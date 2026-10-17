@@ -225,69 +225,69 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-indigo-950/60 via-slate-900 to-purple-950/40 border border-indigo-900/40 shadow-xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm">
         <div className="flex items-start gap-3">
-          <div className="p-3 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 mt-1">
-            <BookOpen className="w-6 h-6" />
+          <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-[#1E3A8A] mt-1 shrink-0">
+            <BookOpen className="w-6 h-6 text-[#1E3A8A]" />
           </div>
           <div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-xl font-bold text-white tracking-tight">
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h2 className="text-xl font-bold text-[#0F172A] tracking-tight font-sans">
                 AI Technical Publisher
               </h2>
               {/* Provider Badge Toggle */}
-              <div className="inline-flex rounded-lg border border-slate-700 bg-slate-900/80 p-0.5 text-xs font-medium">
+              <div className="inline-flex rounded-xl border border-[#CBD5E1] bg-[#F1F5F9] p-0.5 text-xs font-medium">
                 <button
                   onClick={() => setModelProvider('gemini')}
-                  className={`px-2.5 py-0.5 rounded-md transition-colors ${
+                  className={`px-3 py-1 rounded-lg transition-all ${
                     modelProvider === 'gemini'
-                      ? 'bg-indigo-600 text-white font-semibold'
-                      : 'text-slate-400 hover:text-slate-200'
+                      ? 'bg-[#0F172A] text-white font-bold shadow-sm'
+                      : 'text-[#64748B] hover:text-[#0F172A]'
                   }`}
                 >
                   Gemini 3.8 Flash
                 </button>
                 <button
                   onClick={() => setModelProvider('huggingface')}
-                  className={`px-2.5 py-0.5 rounded-md transition-colors ${
+                  className={`px-3 py-1 rounded-lg transition-all ${
                     modelProvider === 'huggingface'
-                      ? 'bg-amber-600 text-white font-semibold'
-                      : 'text-slate-400 hover:text-slate-200'
+                      ? 'bg-[#0F172A] text-white font-bold shadow-sm'
+                      : 'text-[#64748B] hover:text-[#0F172A]'
                   }`}
                 >
                   Hugging Face AI
                 </button>
               </div>
             </div>
-            <p className="text-xs md:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            <p className="text-xs md:text-sm text-[#64748B] mt-1 max-w-2xl leading-relaxed">
               Transform raw functions and code snippets into publication-grade Markdown documentation,
               README modules, formal API specs, or step-by-step developer tutorials in seconds.
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap shrink-0">
           <button
             onClick={() => setShowPublicationsDrawer(true)}
-            className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
+            className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#0F172A] bg-white hover:bg-[#F1F5F9] border border-[#CBD5E1] transition-all shadow-sm"
           >
-            <FolderOpen className="w-4 h-4 text-indigo-400" />
+            <FolderOpen className="w-4 h-4 text-[#1E3A8A]" />
             <span>Published Docs ({publications.length})</span>
           </button>
 
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !activeSnippet}
-            className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50 shrink-0"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#0F172A] hover:bg-[#1E293B] shadow-md transition-all disabled:opacity-50 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
           >
             {isGenerating ? (
               <>
-                <RefreshCw className="w-4 h-4 animate-spin" />
+                <RefreshCw className="w-4 h-4 animate-spin text-white" />
                 <span>Generating...</span>
               </>
             ) : (
               <>
-                <Sparkles className="w-4 h-4" />
+                <Sparkles className="w-4 h-4 text-white" />
                 <span>Generate ({modelProvider === 'gemini' ? 'Gemini' : 'Hugging Face'})</span>
               </>
             )}
@@ -297,13 +297,13 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
 
       {/* Hugging Face Settings Bar (When Hugging Face is selected) */}
       {modelProvider === 'huggingface' && (
-        <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-900/40 text-xs text-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-in fade-in duration-200">
+        <div className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] text-xs text-[#0F172A] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-in fade-in duration-200">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-semibold text-amber-300">Model Engine:</span>
+            <span className="font-bold text-[#1E3A8A]">Model Engine:</span>
             <select
               value={hfModel}
               onChange={(e) => setHfModel(e.target.value)}
-              className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 font-mono text-xs focus:outline-none focus:border-amber-400"
+              className="px-3 py-1.5 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] font-mono text-xs focus:outline-none focus:border-[#0F172A]"
             >
               <option value="bigcode/starcoder2-15b">StarCoder2 (15B) - BigCode</option>
               <option value="codellama/CodeLlama-7b-hf">Code Llama (7B) - Meta</option>
@@ -313,29 +313,29 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto">
-            <Key className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <Key className="w-3.5 h-3.5 text-[#1E3A8A] shrink-0" />
             <input
               type="password"
               placeholder="Optional Hugging Face Token (hf_...)"
               value={hfToken}
               onChange={(e) => setHfToken(e.target.value)}
-              className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 text-xs w-full sm:w-64 font-mono focus:outline-none focus:border-amber-400"
+              className="px-3 py-1.5 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] placeholder-[#94A3B8] text-xs w-full sm:w-64 font-mono focus:outline-none focus:border-[#0F172A]"
             />
           </div>
         </div>
       )}
 
       {/* Control Configuration Bar */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-sm text-xs">
         {/* Source Snippet Selector */}
         <div>
-          <label className="block text-slate-400 font-semibold mb-1.5">
+          <label className="block text-[#64748B] font-bold mb-1.5 font-mono">
             1. Source Snippet
           </label>
           <select
             value={selectedSnippetId}
             onChange={(e) => setSelectedSnippetId(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 focus:outline-none focus:border-indigo-500 text-xs font-sans"
+            className="w-full px-3 py-2 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] focus:outline-none focus:border-[#0F172A] text-xs font-sans"
           >
             {snippets.map((s) => (
               <option key={s.id} value={s.id}>
@@ -347,31 +347,31 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
 
         {/* Document Type */}
         <div>
-          <label className="block text-slate-400 font-semibold mb-1.5">
+          <label className="block text-[#64748B] font-bold mb-1.5 font-mono">
             2. Document Type
           </label>
           <select
             value={docType}
             onChange={(e) => setDocType(e.target.value as DocumentationType)}
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 focus:outline-none focus:border-indigo-500 text-xs font-sans"
+            className="w-full px-3 py-2 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] focus:outline-none focus:border-[#0F172A] text-xs font-sans"
           >
-            <option value="readme_section">📘 README Component &amp; Badges</option>
+            <option value="readme_section">📘 README Component & Badges</option>
             <option value="tutorial">🛠️ Step-by-Step Developer Tutorial</option>
-            <option value="api_reference">📑 Formal API &amp; Function Reference</option>
-            <option value="usage_guide">💡 Practical Cookbook &amp; Recipes</option>
-            <option value="troubleshooting">🔍 Edge Cases &amp; Troubleshooting</option>
+            <option value="api_reference">📑 Formal API & Function Reference</option>
+            <option value="usage_guide">💡 Practical Cookbook & Recipes</option>
+            <option value="troubleshooting">🔍 Edge Cases & Troubleshooting</option>
           </select>
         </div>
 
         {/* Audience */}
         <div>
-          <label className="block text-slate-400 font-semibold mb-1.5">
+          <label className="block text-[#64748B] font-bold mb-1.5 font-mono">
             3. Target Audience
           </label>
           <select
             value={audience}
             onChange={(e) => setAudience(e.target.value as any)}
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 focus:outline-none focus:border-indigo-500 text-xs font-sans"
+            className="w-full px-3 py-2 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] focus:outline-none focus:border-[#0F172A] text-xs font-sans"
           >
             <option value="beginner">Junior / Beginner Developer</option>
             <option value="intermediate">Intermediate Full-Stack</option>
@@ -381,24 +381,24 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
 
         {/* Tone */}
         <div>
-          <label className="block text-slate-400 font-semibold mb-1.5">
-            4. Tone &amp; Depth
+          <label className="block text-[#64748B] font-bold mb-1.5 font-mono">
+            4. Tone & Depth
           </label>
           <select
             value={tone}
             onChange={(e) => setTone(e.target.value as any)}
-            className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-200 focus:outline-none focus:border-indigo-500 text-xs font-sans"
+            className="w-full px-3 py-2 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] focus:outline-none focus:border-[#0F172A] text-xs font-sans"
           >
-            <option value="comprehensive">Comprehensive &amp; Production-Ready</option>
-            <option value="concise">Concise &amp; Direct</option>
+            <option value="comprehensive">Comprehensive & Production-Ready</option>
+            <option value="concise">Concise & Direct</option>
             <option value="step-by-step">Tutorial Style (Step-by-step)</option>
           </select>
         </div>
       </div>
 
       {error && (
-        <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
-          {error}
+        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+          <span>{error}</span>
         </div>
       )}
 
@@ -407,11 +407,11 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
         {/* Left Pane: Source Code Inspector */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-bold text-[#64748B] uppercase tracking-wider font-mono">
               Source Code
             </span>
             {activeSnippet && (
-              <span className="text-xs text-indigo-400 font-medium">
+              <span className="text-xs text-[#1E3A8A] font-semibold truncate max-w-xs">
                 {activeSnippet.title}
               </span>
             )}
@@ -425,32 +425,32 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
               showLineNumbers={true}
             />
           ) : (
-            <div className="h-64 flex items-center justify-center border border-dashed border-slate-800 rounded-xl text-slate-500 text-xs">
+            <div className="h-64 flex items-center justify-center border border-dashed border-[#CBD5E1] rounded-2xl text-[#64748B] text-xs bg-white shadow-sm">
               No snippet selected
             </div>
           )}
 
           {activeSnippet?.notes && (
-            <div className="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-300">
-              <span className="font-semibold text-slate-400 block mb-1">
+            <div className="p-3.5 rounded-xl bg-white border border-[#E2E8F0] shadow-sm text-xs text-[#0F172A]">
+              <span className="font-bold text-[#64748B] block mb-1">
                 Developer Notes Context:
               </span>
-              <p className="line-clamp-3">{activeSnippet.notes}</p>
+              <p className="line-clamp-3 text-[#334155]">{activeSnippet.notes}</p>
             </div>
           )}
         </div>
 
         {/* Right Pane: Generated Documentation */}
-        <div className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/90 overflow-hidden shadow-2xl min-h-[580px]">
+        <div className="flex flex-col rounded-2xl border border-[#E2E8F0] bg-white overflow-hidden shadow-sm min-h-[580px]">
           {/* Header Bar */}
-          <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-slate-800">
+          <div className="flex items-center justify-between px-4 py-3 bg-[#F8FAFC] border-b border-[#E2E8F0]">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setViewMode('preview')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                   viewMode === 'preview'
-                    ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#0F172A] text-white shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
                 <Eye className="w-3.5 h-3.5" />
@@ -459,10 +459,10 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
 
               <button
                 onClick={() => setViewMode('raw')}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                   viewMode === 'raw'
-                    ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#0F172A] text-white shadow-sm'
+                    : 'text-[#64748B] hover:text-[#0F172A]'
                 }`}
               >
                 <Edit className="w-3.5 h-3.5" />
@@ -475,21 +475,21 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
               <button
                 onClick={handleCopyMarkdown}
                 disabled={!markdownContent}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors disabled:opacity-40 ${
+                className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium transition-all disabled:opacity-40 ${
                   copied
-                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white'
+                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    : 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1]'
                 }`}
                 title="Copy raw Markdown"
               >
                 {copied ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Copied</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3.5 h-3.5" />
+                    <Copy className="w-3.5 h-3.5 text-[#1E3A8A]" />
                     <span>Copy</span>
                   </>
                 )}
@@ -498,7 +498,7 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
               <button
                 onClick={handleDownload}
                 disabled={!markdownContent}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white disabled:opacity-40 transition-colors"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-white hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] disabled:opacity-40 transition-colors"
                 title="Download as .md file"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -508,17 +508,17 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
               <button
                 onClick={handleSaveToNotes}
                 disabled={!markdownContent || savedToNotes}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700/80 disabled:opacity-40 transition-colors"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-white hover:bg-[#F1F5F9] text-[#0F172A] border border-[#CBD5E1] disabled:opacity-40 transition-colors"
                 title="Append to snippet notes"
               >
                 {savedToNotes ? (
                   <>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Saved!</span>
                   </>
                 ) : (
                   <>
-                    <Save className="w-3.5 h-3.5" />
+                    <Save className="w-3.5 h-3.5 text-[#1E3A8A]" />
                     <span>Save to Notes</span>
                   </>
                 )}
@@ -527,7 +527,7 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
               <button
                 onClick={handleSaveAsPublication}
                 disabled={!markdownContent || savedAsPublication}
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 disabled:opacity-40 transition-colors shadow-sm"
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold bg-[#0F172A] hover:bg-[#1E293B] text-white disabled:opacity-40 transition-all shadow-sm"
                 title="Save as permanent published document"
               >
                 {savedAsPublication ? (
@@ -537,7 +537,7 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
                   </>
                 ) : (
                   <>
-                    <Layers className="w-3.5 h-3.5 text-emerald-400" />
+                    <Sparkles className="w-3.5 h-3.5 text-white" />
                     <span>Publish Doc</span>
                   </>
                 )}
@@ -546,38 +546,39 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
           </div>
 
           {/* Content Body */}
-          <div className="flex-1 p-6 overflow-y-auto">
+          <div className="flex-1 p-6 overflow-y-auto bg-white">
             {isGenerating ? (
-              <div className="h-96 flex flex-col items-center justify-center gap-3 text-slate-400 text-center">
-                <RefreshCw className="w-8 h-8 text-indigo-400 animate-spin" />
-                <p className="text-sm font-medium text-slate-200">
+              <div className="h-96 flex flex-col items-center justify-center gap-3 text-[#64748B] text-center">
+                <RefreshCw className="w-8 h-8 text-[#0F172A] animate-spin" />
+                <p className="text-sm font-bold text-[#0F172A]">
                   Synthesizing documentation with {modelProvider === 'gemini' ? 'Gemini 3.8 Flash' : hfModel}...
                 </p>
-                <p className="text-xs text-slate-500 max-w-sm">
+                <p className="text-xs text-[#64748B] max-w-sm">
                   Analyzing syntax, generating explanations, usage instructions, and structuring Markdown output.
                 </p>
               </div>
             ) : !markdownContent ? (
-              <div className="h-96 flex flex-col items-center justify-center gap-3 text-slate-500 text-center">
-                <FileText className="w-10 h-10 text-slate-600" />
-                <p className="text-sm font-medium text-slate-300">
+              <div className="h-96 flex flex-col items-center justify-center gap-3 text-[#64748B] text-center">
+                <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#1E3A8A]">
+                  <FileText className="w-7 h-7" />
+                </div>
+                <p className="text-sm font-bold text-[#0F172A]">
                   Ready to publish technical documentation
                 </p>
-                <p className="text-xs text-slate-500 max-w-sm">
+                <p className="text-xs text-[#64748B] max-w-sm">
                   Select your snippet, configure the document type above, and click{' '}
-                  <span className="text-indigo-400 font-semibold">"Generate"</span>.
+                  <span className="text-[#1E3A8A] font-bold">"Generate"</span>.
                 </p>
               </div>
             ) : viewMode === 'raw' ? (
               <textarea
                 value={markdownContent}
                 onChange={(e) => setMarkdownContent(e.target.value)}
-                className="w-full h-[520px] font-mono text-xs text-slate-200 bg-slate-950 p-4 rounded-xl border border-slate-800 resize-none focus:outline-none focus:border-indigo-500 leading-relaxed"
+                className="w-full h-[520px] font-mono text-xs text-[#F8FAFC] bg-[#0F172A] p-4 rounded-xl border border-[#1E293B] resize-none focus:outline-none focus:border-[#3B82F6] leading-relaxed"
                 spellCheck={false}
               />
             ) : (
-              <div className="space-y-4 text-slate-200 text-sm leading-relaxed font-sans">
-                {/* Clean, high-fidelity markdown rendering */}
+              <div className="prose-vault max-w-none">
                 <RenderedMarkdown markdown={markdownContent} />
               </div>
             )}
@@ -587,23 +588,23 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
 
       {/* Published Documents Drawer/Modal */}
       {showPublicationsDrawer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="relative w-full max-w-3xl rounded-2xl border border-slate-800 bg-slate-900 shadow-2xl p-6 max-h-[85vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-indigo-600/20 text-indigo-400">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="relative w-full max-w-3xl rounded-2xl border border-[#CBD5E1] bg-white shadow-2xl p-6 max-h-[85vh] flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between pb-4 border-b border-[#E2E8F0]">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-xl bg-blue-50 text-[#1E3A8A] border border-blue-200">
                   <FolderOpen className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">Published Documentation Library</h3>
-                  <p className="text-xs text-slate-400">
+                  <h3 className="text-base font-bold text-[#0F172A]">Published Documentation Library</h3>
+                  <p className="text-xs text-[#64748B]">
                     Saved technical guides, README modules, and API specifications
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setShowPublicationsDrawer(false)}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800"
+                className="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] border border-[#CBD5E1] transition-all"
               >
                 Close
               </button>
@@ -611,23 +612,23 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
 
             <div className="flex-1 overflow-y-auto my-4 space-y-3">
               {publications.length === 0 ? (
-                <div className="text-center py-12 text-slate-500 text-xs">
+                <div className="text-center py-12 text-[#64748B] text-xs">
                   No documents published yet. Generate a document and click "Publish Doc" to save it here.
                 </div>
               ) : (
                 publications.map((pub) => (
                   <div
                     key={pub.id}
-                    className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                    className="p-4 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#CBD5E1] transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-slate-100">{pub.title}</span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-950/50 text-indigo-300 border border-indigo-800/60 uppercase">
+                        <span className="font-bold text-[#0F172A]">{pub.title}</span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-50 text-[#1E3A8A] border border-blue-200 uppercase font-semibold">
                           {pub.doc_type}
                         </span>
                       </div>
-                      <div className="flex items-center gap-3 text-slate-400 text-[11px]">
+                      <div className="flex items-center gap-3 text-[#64748B] text-[11px]">
                         <span>{new Date(pub.created_at).toLocaleDateString()}</span>
                         <span>•</span>
                         <span>{pub.views || 0} views</span>
@@ -643,13 +644,13 @@ export const AIPublisherView: React.FC<AIPublisherViewProps> = ({
                           setViewMode('preview');
                           setShowPublicationsDrawer(false);
                         }}
-                        className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600/30 border border-indigo-500/40 transition-colors"
+                        className="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0F172A] text-white hover:bg-[#1E293B] transition-colors"
                       >
                         Open &amp; Edit
                       </button>
                       <button
                         onClick={() => handleDeletePublication(pub.id)}
-                        className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-950/40 transition-colors"
+                        className="p-1.5 rounded-lg text-red-600 hover:bg-red-50 transition-colors"
                         title="Delete publication"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -709,7 +710,7 @@ function RenderedMarkdown({ markdown }: { markdown: string }) {
       elements.push(
         <h1
           key={i}
-          className="text-2xl font-bold text-white border-b border-slate-800 pb-2 mt-6 mb-3 tracking-tight"
+          className="text-2xl font-extrabold text-[#0F172A] border-b border-[#E2E8F0] pb-2 mt-6 mb-3 tracking-tight font-sans"
         >
           {line.replace('# ', '')}
         </h1>
@@ -718,20 +719,20 @@ function RenderedMarkdown({ markdown }: { markdown: string }) {
       elements.push(
         <h2
           key={i}
-          className="text-lg font-bold text-indigo-300 mt-5 mb-2 tracking-tight flex items-center gap-2"
+          className="text-lg font-bold text-[#1E3A8A] border-b border-[#E2E8F0] pb-1.5 mt-5 mb-2 tracking-tight flex items-center gap-2 font-sans"
         >
           {line.replace('## ', '')}
         </h2>
       );
     } else if (line.startsWith('### ')) {
       elements.push(
-        <h3 key={i} className="text-base font-semibold text-slate-200 mt-4 mb-1">
+        <h3 key={i} className="text-base font-bold text-[#0F172A] mt-4 mb-1 font-sans">
           {line.replace('### ', '')}
         </h3>
       );
     } else if (line.startsWith('- ') || line.startsWith('* ')) {
       elements.push(
-        <li key={i} className="ml-4 list-disc text-slate-300 text-xs md:text-sm my-0.5">
+        <li key={i} className="ml-4 list-disc text-[#334155] text-xs md:text-sm my-1">
           {line.replace(/^[-*]\s+/, '')}
         </li>
       );
@@ -739,7 +740,7 @@ function RenderedMarkdown({ markdown }: { markdown: string }) {
       elements.push(
         <blockquote
           key={i}
-          className="border-l-4 border-indigo-500 bg-indigo-950/20 px-4 py-2 my-2 text-xs md:text-sm text-indigo-200 rounded-r-lg italic"
+          className="border-l-4 border-[#0F172A] bg-[#F1F5F9] px-4 py-2 my-2 text-xs md:text-sm text-[#1E293B] rounded-r-lg italic"
         >
           {line.replace(/^>\s+/, '')}
         </blockquote>
@@ -748,7 +749,7 @@ function RenderedMarkdown({ markdown }: { markdown: string }) {
       elements.push(<div key={i} className="h-2" />);
     } else {
       elements.push(
-        <p key={i} className="text-xs md:text-sm text-slate-300 my-1 leading-relaxed">
+        <p key={i} className="text-xs md:text-sm text-[#334155] my-1.5 leading-relaxed">
           {line}
         </p>
       );
